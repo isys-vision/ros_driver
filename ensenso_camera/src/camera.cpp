@@ -535,7 +535,8 @@ void Camera::loadParameterSet(std::string name)
   {
     // The parameter set was never used before. Create it by copying the
     // default settings.
-    parameterSets.insert(std::make_pair(name, ParameterSet(name, defaultParameters)));
+    std::string nodeName = serial + "_" + name;
+    parameterSets.insert(std::make_pair(name, ParameterSet(nodeName, defaultParameters)));
   }
 
   ParameterSet const& parameterSet = parameterSets.at(name);
