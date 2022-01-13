@@ -16,9 +16,11 @@ class Pose:
 
         # The NxLib transformation in the JSON file is in millimeters. We
         # represent it in meters like everything in ROS.
-        position = [transform["Translation"][0] / 1000,
-                    transform["Translation"][1] / 1000,
-                    transform["Translation"][2] / 1000]
+        position = [
+            transform["Translation"][0] / 1000,
+            transform["Translation"][1] / 1000,
+            transform["Translation"][2] / 1000,
+        ]
         axis = (transform["Rotation"]["Axis"][0], transform["Rotation"]["Axis"][1], transform["Rotation"]["Axis"][2])
         orientation = tf.transformations.quaternion_about_axis(transform["Rotation"]["Angle"], axis)
 
@@ -26,13 +28,8 @@ class Pose:
 
     @classmethod
     def from_message(cls, message):
-        position = [message.position.x,
-                    message.position.y,
-                    message.position.z]
-        orientation = [message.orientation.x,
-                       message.orientation.y,
-                       message.orientation.z,
-                       message.orientation.w]
+        position = [message.position.x, message.position.y, message.position.z]
+        orientation = [message.orientation.x, message.orientation.y, message.orientation.z, message.orientation.w]
 
         return cls(position, orientation)
 
