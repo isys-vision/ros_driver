@@ -1,6 +1,6 @@
 <launch>
   <arg name="serial_stereo" doc="Serial of the Ensenso stereo camera" />
-  <arg name="serial_mono" doc="Serial of the mono mamera" />
+  <arg name="serial_mono" doc="Serial of the mono camera" />
   <arg name="stereo_ns" doc="Namespace for the stereo camera" />
   <arg name="mono_ns" doc="Namespace for the mono camera" />
   <arg name="target_frame_name" value="Workspace" doc="The root the tf tree"/>
