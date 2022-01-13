@@ -77,7 +77,7 @@ def main():
             rospy.loginfo("Capturing the next pattern in: {} seconds.".format(time_left_to_move_robot))
             rospy.sleep(0.75)
             end_loop = rospy.get_time()
-            time_left_to_move_robot -= (end_loop - start_loop)
+            time_left_to_move_robot -= end_loop - start_loop
         rospy.sleep(time_left_to_move_robot)
 
     calibrate_hand_eye(hand_eye_calib_client, True)
