@@ -32,7 +32,7 @@ def capture_pattern(hand_eye_client):
         result = hand_eye_client.get_result()
         if not result.found_pattern:
             rospy.logerr("Did not find any patterns.")
-    except:
+    except Exception:
         pass
 
 
