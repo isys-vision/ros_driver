@@ -116,8 +116,8 @@ class RegionOfInterest:
         message.upper.z = self.upper[2]
 
     def is_empty(self):
-        for l, u in zip(self.lower, self.upper):
-            if l >= u:
+        for lower, upper in zip(self.lower, self.upper):
+            if lower >= upper:
                 return True
         return False
 
