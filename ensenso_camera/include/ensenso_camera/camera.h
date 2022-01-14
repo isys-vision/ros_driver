@@ -114,7 +114,7 @@ int const ERROR_CODE_TF = 101;
   } /* NOLINT */                                                                                                       \
   catch (tf2::TransformException & e)                                                                                  \
   {                                                                                                                    \
-    ROS_ERROR("TF Exception: %s", e.what());                                                                           \
+    ROS_ERROR("tf Exception: %s", e.what());                                                                           \
     ensenso_camera_msgs::ACTION_NAME##Result result;                                                                   \
     result.error.code = ERROR_CODE_TF;                                                                                 \
     result.error.message = e.what();                                                                                   \
@@ -321,7 +321,7 @@ protected:
   virtual ros::Time capture() const = 0;
 
   /**
-   * Estimate the pose of a pattern in the given TF frame. The pattern must
+   * Estimate the pose of a pattern in the given tf frame. The pattern must
    * already be contained in the pattern buffer (that is, you should call
    * collectPattern before this function).
    *
@@ -342,12 +342,12 @@ protected:
 
   /**
    * Update the camera's link node and the transformations in the NxLib
-   * according to the current information from TF.
+   * according to the current information from tf.
    *
    * @param time                    The timestamp from which the transformation should be taken.
-   * @param frame             The TF frame in which the camera should return the data. Uses the node's target
+   * @param frame             The tf frame in which the camera should return the data. Uses the node's target
    *                                frame by default.
-   * @param useCachedTransformation Do not update the transformation from the TF server, but use a cached one.
+   * @param useCachedTransformation Do not update the transformation from the tf server, but use a cached one.
    */
   void updateGlobalLink(ros::Time time = ros::Time::now(), std::string frame = "",
                         bool useCachedTransformation = false) const;

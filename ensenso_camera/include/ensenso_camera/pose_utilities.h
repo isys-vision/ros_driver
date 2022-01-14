@@ -16,20 +16,20 @@
  * NaNs.
  *
  * For example, such an invalid pose is produced by converting an uninitialized
- * geometry_msgs/Pose to a TF pose.
+ * geometry_msgs/Pose to a tf pose.
  */
 bool isValid(tf2::Transform const& pose);
 bool isValid(geometry_msgs::Transform const& pose);
 bool isValid(tf2::Vector3 const& vector);
 
 /**
- * Convert the given TF pose to an NxLib transformation and write it into
+ * Convert the given tf pose to an NxLib transformation and write it into
  * the given NxLib node.
  */
 void writePoseToNxLib(tf2::Transform const& pose, NxLibItem const& node);
 
 /**
- * Convert the given NxLib transformation node to a TF pose.
+ * Convert the given NxLib transformation node to a tf pose.
  */
 tf2::Transform poseFromNxLib(NxLibItem const& node);
 
@@ -40,7 +40,7 @@ geometry_msgs::TransformStamped poseFromNxLib(NxLibItem const& node, std::string
                                               std::string const& childFrame);
 
 /**
- * Get a TF transformation that defines the child frame at the position of the
+ * Get a tf transformation that defines the child frame at the position of the
  * given pose.
  */
 geometry_msgs::TransformStamped transformFromPose(geometry_msgs::PoseStamped const& pose,

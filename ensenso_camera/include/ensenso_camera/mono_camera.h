@@ -46,7 +46,7 @@ private:
   std::vector<MonoCalibrationPattern> collectPattern(bool clearBuffer = false) const;
 
   /**
-   * Estimate the pose of a pattern in the given TF frame. The pattern must
+   * Estimate the pose of a pattern in the given tf frame. The pattern must
    * already be contained in the pattern buffer (that is, you should call
    * collectPattern before this function).
    *
