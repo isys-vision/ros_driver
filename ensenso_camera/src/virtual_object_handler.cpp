@@ -14,7 +14,7 @@ using namespace ensenso_camera;
 
 namespace
 {
-std::string readFile(const std::string& filename)
+std::string readFile(std::string const& filename)
 {
   std::ifstream file{ filename };
   if (!file.is_open() || !file.rdbuf())
@@ -28,8 +28,8 @@ std::string readFile(const std::string& filename)
 }
 }  // namespace
 
-VirtualObjectHandler::VirtualObjectHandler(const std::string& filename, const std::string& objectsFrame,
-                                           const std::string& cameraFrame)
+VirtualObjectHandler::VirtualObjectHandler(std::string const& filename, std::string const& objectsFrame,
+                                           std::string const& cameraFrame)
   : objectsFrame(objectsFrame), cameraFrame(cameraFrame)
 {
   nxLibInitialize(false);
