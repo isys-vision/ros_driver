@@ -83,13 +83,10 @@ Camera::Camera(ros::NodeHandle& nh, CameraParameters _params) : params(std::move
 
   params.isFileCamera = !params.fileCameraPath.empty();
 
-  accessTreeServer = ::make_unique<AccessTreeServer>(nh, "access_tree", boost::bind(&Camera::onAccessTree, this, _1));
-  executeCommandServer =
-      ::make_unique<ExecuteCommandServer>(nh, "execute_command", boost::bind(&Camera::onExecuteCommand, this, _1));
-  getParameterServer =
-      ::make_unique<GetParameterServer>(nh, "get_parameter", boost::bind(&Camera::onGetParameter, this, _1));
-  setParameterServer =
-      ::make_unique<SetParameterServer>(nh, "set_parameter", boost::bind(&Camera::onSetParameter, this, _1));
+  accessTreeServer = MAKE_SERVER(AccessTree, access_tree);
+  executeCommandServer = MAKE_SERVER(ExecuteCommand, execute_command);
+  getParameterServer = MAKE_SERVER(GetParameter, get_parameter);
+  setParameterServer = MAKE_SERVER(SetParameter, set_parameter);
 
   statusPublisher = nh.advertise<diagnostic_msgs::DiagnosticArray>("/diagnostics", 1);
 

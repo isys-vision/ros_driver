@@ -139,6 +139,9 @@ using ExecuteCommandServer = QueuedActionServer<ensenso_camera_msgs::ExecuteComm
 using GetParameterServer = QueuedActionServer<ensenso_camera_msgs::GetParameterAction>;
 using SetParameterServer = QueuedActionServer<ensenso_camera_msgs::SetParameterAction>;
 
+#undef MAKE_SERVER
+#define MAKE_SERVER(TYPE, TAG) ::make_unique<TYPE##Server>(nh, #TAG, boost::bind(&Camera::on##TYPE, this, _1))
+
 /**
  * A set of parameters that can be used by the different actions of the camera node.
  */

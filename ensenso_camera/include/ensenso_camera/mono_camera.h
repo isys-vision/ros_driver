@@ -8,6 +8,9 @@
 using RequestDataMonoServer = QueuedActionServer<ensenso_camera_msgs::RequestDataMonoAction>;
 using LocatePatternMonoServer = QueuedActionServer<ensenso_camera_msgs::LocatePatternMonoAction>;
 
+#undef MAKE_SERVER
+#define MAKE_SERVER(TYPE, TAG) ::make_unique<TYPE##MonoServer>(nh, #TAG, boost::bind(&MonoCamera::on##TYPE, this, _1))
+
 class MonoCamera : public Camera
 {
 private:

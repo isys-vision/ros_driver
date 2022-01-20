@@ -19,6 +19,9 @@ using ProjectPatternServer = QueuedActionServer<ensenso_camera_msgs::ProjectPatt
 using TexturedPointCloudServer = QueuedActionServer<ensenso_camera_msgs::TexturedPointCloudAction>;
 using TelecentricProjectionServer = QueuedActionServer<ensenso_camera_msgs::TelecentricProjectionAction>;
 
+#undef MAKE_SERVER
+#define MAKE_SERVER(TYPE, TAG) ::make_unique<TYPE##Server>(nh, #TAG, boost::bind(&StereoCamera::on##TYPE, this, _1))
+
 /**
  * Indicates whether the projector and front light should be turned on or off automatically.
  */
