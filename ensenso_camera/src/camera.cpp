@@ -38,7 +38,7 @@ CameraParameters::CameraParameters(ros::NodeHandle const& nh, std::string const&
     targetFrame = cameraFrame;
   }
 
-  if (cameraType == valStereo || cameraType == valStructuredLight)
+  if (cameraType != valMonocular)
   {
     nh.getParam("robot_frame", robotFrame);
     nh.getParam("wrist_frame", wristFrame);
