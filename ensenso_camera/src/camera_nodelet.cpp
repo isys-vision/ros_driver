@@ -28,6 +28,23 @@ void initNxLib(ros::NodeHandle& nh)
     abortInit("Error while initializing the NxLib", false);
   }
 
+  int tcpPortNumber;
+  if (nh.getParam("tcp_port_number", tcpPortNumber))
+  {
+    ROS_DEBUG("Opening TCP port %d on the NxLib...", tcpPortNumber);
+
+    int openedPortNumber;
+    try
+    {
+      nxLibOpenTcpPort(tcpPortNumber, &openedPortNumber);
+      ROS_INFO("Opened TCP port %d on the NxLib.", openedPortNumber);
+    }
+    catch (NxLibException& e)
+    {
+      abortInit("Error while opening TCP port (NxLib error message: %s)", e.getErrorText().c_str());
+    }
+  }
+
   int threads;
   if (nh.getParam("threads", threads))
   {
