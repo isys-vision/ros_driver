@@ -132,11 +132,10 @@ def main():
                                 found_primitive.normal.y,
                                 found_primitive.normal.z,
                             ]
-                            angle = np.arccos(
-                                np.dot(z_camera, normal_plane)
-                                / (np.linalg.norm(z_camera) / np.linalg.norm(normal_plane))
-                            )
-                            axis = np.cross(z_camera, normal_plane) / np.linalg.norm(np.cross(z_camera, normal_plane))
+                            angle_norm = np.linalg.norm(z_camera) / np.linalg.norm(normal_plane)
+                            angle = np.arccos(np.dot(z_camera, normal_plane) / angle_norm)
+                            axis_cross = np.cross(z_camera, normal_plane)
+                            axis = axis_cross / np.linalg.norm(axis_cross)
                             rot_matrix = transformations.rotation_matrix(angle=angle, direction=axis)
                             quaternion = transformations.quaternion_from_matrix(rot_matrix)
 
