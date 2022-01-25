@@ -9,15 +9,9 @@
   <color rgba="0.0 0.0 0.0 1.0"/>
 </material>
 
-  <xacro:macro name="ensenso_N_Series" params="camera parent *origin margin">
+  <xacro:macro name="ensenso_N_Series" params="name margin:=0.03">
 
-    <joint name="${parent}_${camera}_joint" type="fixed">
-      <xacro:insert_block name="origin"/>
-      <parent link="${parent}" />
-      <child link="${camera}_mounting_frame" />
-    </joint>
-
-    <link name="${camera}_mounting_frame">
+    <link name="${name}">
       <visual>
         <origin rpy="0 0 0" xyz="0.00 0.0 0.0"/>
         <geometry>
@@ -34,41 +28,35 @@
     </link>
 
     <!-- Projector -->
-    <joint name="${camera}_projector_joint" type="fixed">
-      <parent link="${camera}_mounting_frame"/>
-      <child link="${camera}_projector_lens_frame"/>
+    <joint name="${name}_projector_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="${name}_projector_lens_frame"/>
       <origin xyz="0 0.00 0.05" rpy=" 0 0 0"/>
     </joint>
-    <link name="${camera}_projector_lens_frame"/>
+    <link name="${name}_projector_lens_frame"/>
 
     <!-- Left lens -->
-    <joint name="${camera}_left_lense_joint" type="fixed">
-      <parent link="${camera}_mounting_frame"/>
-      <child link="${camera}_left_lens_frame"/>
+    <joint name="${name}_left_lense_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="${name}_left_lens_frame"/>
       <origin xyz="-0.05 0.00 0.05" rpy=" 0 0 0"/>
     </joint>
-    <link name="${camera}_left_lens_frame"/>
+    <link name="${name}_left_lens_frame"/>
 
     <!-- Right lens -->
-    <joint name="${camera}_right_lens_joint" type="fixed">
-      <parent link="${camera}_mounting_frame"/>
-      <child link="${camera}_right_lens_frame"/>
+    <joint name="${name}_right_lens_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="${name}_right_lens_frame"/>
       <origin xyz="0.05 0.00 0.05" rpy=" 0 0 0"/>
     </joint>
-    <link name="${camera}_right_lens_frame"/>
+    <link name="${name}_right_lens_frame"/>
 
   </xacro:macro>
 
 
-  <xacro:macro name="ensenso_X200_Series" params="camera parent *origin margin radius_lens_sensor length_lens_sensor radius_lens_projector length_lens_projector">
+  <xacro:macro name="ensenso_X200_Series" params="name margin:=0.03 radius_lens_sensor:=0.02 length_lens_sensor:=0.05 radius_lens_projector:=0.02 length_lens_projector:=0.05">
 
-    <joint name="${parent}_${camera}_joint" type="fixed">
-      <xacro:insert_block name="origin"/>
-      <parent link="${parent}" />
-      <child link="${camera}_mounting_frame" />
-    </joint>
-
-    <link name="${camera}_mounting_frame">
+    <link name="${name}">
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
@@ -85,40 +73,34 @@
     </link>
 
     <!-- Left lens -->
-    <joint name="${camera}_left_lens_joint" type="fixed">
-      <parent link="${camera}_mounting_frame"/>
-      <child link="${camera}_left_lens_frame"/>
+    <joint name="${name}_left_lens_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="${name}_left_lens_frame"/>
       <origin xyz="-0.1067 0.036 0.033" rpy="-1.570796 0 0"/>
     </joint>
-    <xacro:objective camera="${camera}" margin="${margin}" name="left" radius="${radius_lens_sensor}" length_tube="${length_lens_sensor}"/>
+    <xacro:objective name="${name}" margin="${margin}" identifier="left" radius="${radius_lens_sensor}" length_tube="${length_lens_sensor}"/>
 
     <!-- Right lens -->
-    <joint name="${camera}_right_lens_joint" type="fixed">
-      <parent link="${camera}_mounting_frame"/>
-      <child link="${camera}_right_lens_frame"/>
+    <joint name="${name}_right_lens_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="${name}_right_lens_frame"/>
       <origin xyz="0.1067 0.036 0.033" rpy="-1.570796 0 0"/>
     </joint>
-    <xacro:objective camera="${camera}" margin="${margin}" name="right" radius="${radius_lens_sensor}" length_tube="${length_lens_sensor}"/>
+    <xacro:objective name="${name}" margin="${margin}" identifier="right" radius="${radius_lens_sensor}" length_tube="${length_lens_sensor}"/>
 
     <!-- Projector lens -->
-    <joint name="${camera}_projector_lens_joint" type="fixed">
-      <parent link="${camera}_mounting_frame"/>
-      <child link="${camera}_projector_lens_frame"/>
+    <joint name="${name}_projector_lens_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="${name}_projector_lens_frame"/>
       <origin xyz="0 0.04 0.033" rpy="-1.570796 0 0"/>
     </joint>
-    <xacro:objective camera="${camera}" margin="${margin}" name="projector" radius="${radius_lens_projector}" length_tube="${length_lens_projector}"/>
+    <xacro:objective name="${name}" margin="${margin}" identifier="projector" radius="${radius_lens_projector}" length_tube="${length_lens_projector}"/>
   </xacro:macro>
 
 
-  <xacro:macro name="ensenso_X400_Series" params="camera parent *origin margin radius_lens_sensor length_lens_sensor radius_lens_projector length_lens_projector">
+  <xacro:macro name="ensenso_X400_Series" params="name margin:=0.03 radius_lens_sensor:=0.02 length_lens_sensor:=0.05 radius_lens_projector:=0.02 length_lens_projector:=0.05">
 
-    <joint name="${parent}_${camera}_joint" type="fixed">
-      <xacro:insert_block name="origin"/>
-      <parent link="${parent}" />
-      <child link="${camera}_mounting_frame" />
-    </joint>
-
-    <link name="${camera}_mounting_frame">
+    <link name="${name}">
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
@@ -135,40 +117,34 @@
     </link>
 
     <!-- Left lens -->
-    <joint name="${camera}_left_lens_joint" type="fixed">
-      <parent link="${camera}_mounting_frame"/>
-      <child link="${camera}_left_lens_frame"/>
+    <joint name="${name}_left_lens_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="${name}_left_lens_frame"/>
       <origin xyz="-0.2109 0.036 0.033" rpy="-1.570796 0 0"/>
     </joint>
-    <xacro:objective camera="${camera}" margin="${margin}" name="left" radius="${radius_lens_sensor}" length_tube="${length_lens_sensor}"/>
+    <xacro:objective name="${name}" margin="${margin}" identifier="left" radius="${radius_lens_sensor}" length_tube="${length_lens_sensor}"/>
 
     <!-- Right lens -->
-    <joint name="${camera}_right_lens_joint" type="fixed">
-      <parent link="${camera}_mounting_frame"/>
-      <child link="${camera}_right_lens_frame"/>
+    <joint name="${name}_right_lens_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="${name}_right_lens_frame"/>
       <origin xyz="0.2109 0.036 0.033" rpy="-1.570796 0 0"/>
     </joint>
-    <xacro:objective camera="${camera}" margin="${margin}" name="right" radius="${radius_lens_sensor}" length_tube="${length_lens_sensor}"/>
+    <xacro:objective name="${name}" margin="${margin}" identifier="right" radius="${radius_lens_sensor}" length_tube="${length_lens_sensor}"/>
 
     <!-- Projector lens -->
-    <joint name="${camera}_projector_lens_joint" type="fixed">
-      <parent link="${camera}_mounting_frame"/>
-      <child link="${camera}_projector_lens_frame"/>
+    <joint name="${name}_projector_lens_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="${name}_projector_lens_frame"/>
       <origin xyz="0 0.04 0.033" rpy="-1.570796 0 0"/>
     </joint>
-    <xacro:objective camera="${camera}" margin="${margin}" name="projector" radius="${radius_lens_projector}" length_tube="${length_lens_projector}"/>
+    <xacro:objective name="${name}" margin="${margin}" identifier="projector" radius="${radius_lens_projector}" length_tube="${length_lens_projector}"/>
   </xacro:macro>
 
 
-  <xacro:macro name="ensenso_X200_xFA_Series" params="camera parent *origin margin radius_lens_sensor length_lens_sensor radius_lens_projector length_lens_projector">
+  <xacro:macro name="ensenso_X200_xFA_Series" params="name margin:=0.03 radius_lens_sensor:=0.02 length_lens_sensor:=0.05 radius_lens_projector:=0.02 length_lens_projector:=0.05">
 
-    <joint name="${parent}_${camera}_joint" type="fixed">
-      <xacro:insert_block name="origin"/>
-      <parent link="${parent}" />
-      <child link="${camera}_mounting_frame" />
-    </joint>
-
-    <link name="${camera}_mounting_frame">
+    <link name="${name}">
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
@@ -185,40 +161,34 @@
     </link>
 
     <!-- Left lens -->
-    <joint name="${camera}_left_lens_joint" type="fixed">
-      <parent link="${camera}_mounting_frame"/>
-      <child link="${camera}_left_lens_frame"/>
+    <joint name="${name}_left_lens_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="${name}_left_lens_frame"/>
       <origin xyz="-0.117 0.031 0.033" rpy="-1.570796 0 0"/>
     </joint>
-    <xacro:objective camera="${camera}" margin="${margin}" name="left" radius="${radius_lens_sensor}" length_tube="${length_lens_sensor}"/>
+    <xacro:objective name="${name}" margin="${margin}" identifier="left" radius="${radius_lens_sensor}" length_tube="${length_lens_sensor}"/>
 
     <!-- Right lens -->
-    <joint name="${camera}_right_lens_joint" type="fixed">
-      <parent link="${camera}_mounting_frame"/>
-      <child link="${camera}_right_lens_frame"/>
+    <joint name="${name}_right_lens_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="${name}_right_lens_frame"/>
       <origin xyz="0.117 0.031 0.033" rpy="-1.570796 0 0"/>
     </joint>
-    <xacro:objective camera="${camera}" margin="${margin}" name="right" radius="${radius_lens_sensor}" length_tube="${length_lens_sensor}"/>
+    <xacro:objective name="${name}" margin="${margin}" identifier="right" radius="${radius_lens_sensor}" length_tube="${length_lens_sensor}"/>
 
     <!-- Projector lens -->
-    <joint name="${camera}_projector_lens_joint" type="fixed">
-      <parent link="${camera}_mounting_frame"/>
-      <child link="${camera}_projector_lens_frame"/>
+    <joint name="${name}_projector_lens_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="${name}_projector_lens_frame"/>
       <origin xyz="0 0.041 0.033" rpy="-1.570796 0 0"/>
     </joint>
-    <xacro:objective camera="${camera}" margin="${margin}" name="projector" radius="${radius_lens_projector}" length_tube="${length_lens_projector}"/>
+    <xacro:objective name="${name}" margin="${margin}" identifier="projector" radius="${radius_lens_projector}" length_tube="${length_lens_projector}"/>
   </xacro:macro>
 
 
-  <xacro:macro name="ensenso_X400_xFA_Series" params="camera parent *origin margin radius_lens_sensor length_lens_sensor radius_lens_projector length_lens_projector">
+  <xacro:macro name="ensenso_X400_xFA_Series" params="name margin:=0.03 radius_lens_sensor:=0.02 length_lens_sensor:=0.05 radius_lens_projector:=0.02 length_lens_projector:=0.05">
 
-    <joint name="${parent}_${camera}_joint" type="fixed">
-      <xacro:insert_block name="origin"/>
-      <parent link="${parent}" />
-      <child link="${camera}_mounting_frame" />
-    </joint>
-
-    <link name="${camera}_mounting_frame">
+    <link name="${name}">
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
@@ -235,33 +205,33 @@
     </link>
 
     <!-- Left lens -->
-    <joint name="${camera}_left_lens_joint" type="fixed">
-      <parent link="${camera}_mounting_frame"/>
-      <child link="${camera}_left_lens_frame"/>
+    <joint name="${name}_left_lens_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="${name}_left_lens_frame"/>
       <origin xyz="-0.22125 0.031 0.033" rpy="-1.570796 0 0"/>
     </joint>
-    <xacro:objective camera="${camera}" margin="${margin}" name="left" radius="${radius_lens_sensor}" length_tube="${length_lens_sensor}"/>
+    <xacro:objective name="${name}" margin="${margin}" identifier="left" radius="${radius_lens_sensor}" length_tube="${length_lens_sensor}"/>
 
     <!-- Right lens -->
-    <joint name="${camera}_right_lens_joint" type="fixed">
-      <parent link="${camera}_mounting_frame"/>
-      <child link="${camera}_right_lens_frame"/>
+    <joint name="${name}_right_lens_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="${name}_right_lens_frame"/>
       <origin xyz="0.22125 0.031 0.033" rpy="-1.570796 0 0"/>
     </joint>
-    <xacro:objective camera="${camera}" margin="${margin}" name="right" radius="${radius_lens_sensor}" length_tube="${length_lens_sensor}"/>
+    <xacro:objective name="${name}" margin="${margin}" identifier="right" radius="${radius_lens_sensor}" length_tube="${length_lens_sensor}"/>
 
     <!-- Projector lens -->
-    <joint name="${camera}_projector_lens_joint" type="fixed">
-      <parent link="${camera}_mounting_frame"/>
-      <child link="${camera}_projector_lens_frame"/>
+    <joint name="${name}_projector_lens_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="${name}_projector_lens_frame"/>
       <origin xyz="0 0.041 0.033" rpy="-1.570796 0 0"/>
     </joint>
-    <xacro:objective camera="${camera}" margin="${margin}" name="projector" radius="${radius_lens_projector}" length_tube="${length_lens_projector}"/>
+    <xacro:objective name="${name}" margin="${margin}" identifier="projector" radius="${radius_lens_projector}" length_tube="${length_lens_projector}"/>
   </xacro:macro>
 
 
-  <xacro:macro name="objective" params="camera margin name radius length_tube">
-    <link name="${camera}_${name}_lens_frame">
+  <xacro:macro name="objective" params="name margin identifier radius length_tube">
+    <link name="${name}_${identifier}_lens_frame">
       <visual>
         <origin xyz="0.0 0.0 ${length_tube / 2.0}" rpy="0 0 0"/>
         <geometry>
