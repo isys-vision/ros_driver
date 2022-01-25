@@ -9,13 +9,57 @@
   <color rgba="0.0 0.0 0.0 1.0"/>
 </material>
 
-  <xacro:macro name="ensenso_N_Series" params="name margin:=0.03">
+  <xacro:macro name="ensenso_N3x_Series" params="name margin:=0.03">
 
     <link name="${name}">
       <visual>
         <origin rpy="0 0 0" xyz="0.00 0.0 0.0"/>
         <geometry>
           <mesh filename="package://ensenso_description/stl_meshes/N30-602-16.stl"/>
+        </geometry>
+        <material name="Ensenso/Blue"/>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="-0.0085 0.00 0.026"/>
+        <geometry>
+          <box size="${margin+0.192} ${margin+0.050} ${margin+0.052}"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Projector -->
+    <joint name="${name}_projector_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="${name}_projector_lens_frame"/>
+      <origin xyz="0 0.00 0.05" rpy=" 0 0 0"/>
+    </joint>
+    <link name="${name}_projector_lens_frame"/>
+
+    <!-- Left lens -->
+    <joint name="${name}_left_lense_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="${name}_left_lens_frame"/>
+      <origin xyz="-0.05 0.00 0.05" rpy=" 0 0 0"/>
+    </joint>
+    <link name="${name}_left_lens_frame"/>
+
+    <!-- Right lens -->
+    <joint name="${name}_right_lens_joint" type="fixed">
+      <parent link="${name}"/>
+      <child link="${name}_right_lens_frame"/>
+      <origin xyz="0.05 0.00 0.05" rpy=" 0 0 0"/>
+    </joint>
+    <link name="${name}_right_lens_frame"/>
+
+  </xacro:macro>
+
+  <xacro:macro name="ensenso_N4x_Series" params="name margin:=0.03">
+
+    <link name="${name}">
+      <visual>
+        <origin rpy="0 0 0" xyz="0.00 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://ensenso_description/stl_meshes/N4x-xxx.stl"/>
         </geometry>
         <material name="Ensenso/Blue"/>
       </visual>
