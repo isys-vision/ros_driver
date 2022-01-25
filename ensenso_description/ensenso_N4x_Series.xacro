@@ -2,8 +2,8 @@
 <robot name="ensenso_camera" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:include filename="$(find ensenso_description)/ensenso.xacro" />
 
-  <xacro:property name="camera_name" default="X200_xFA" />
-  <xacro:ensenso_X400_Series name="${camera_name}" />
+  <xacro:property name="camera_name" default="N35" />
+  <xacro:ensenso_N4x_Series name="${camera_name}" />
   <joint name="world_to_${camera_name}" type="fixed">
     <parent link="base_link" />
     <child link="${camera_name}" />
@@ -13,5 +13,5 @@
   <link name="base_link" />
 </robot>
 <!-- example usage with: 
-  roslaunch urdf_tutorial display.launch model:=`rospack find ensenso_description`/ensenso_X400_Series.xacro gui:=true
+  roslaunch urdf_tutorial display.launch model:=`rospack find ensenso_description`/ensenso_N4x_Series.xacro gui:=true
 -->
