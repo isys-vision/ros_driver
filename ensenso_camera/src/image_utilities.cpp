@@ -110,8 +110,20 @@ ImagePtr imageFromNxLibNode(NxLibItem const& node, std::string const& frame)
 
 ImagePtrPair imagePairFromNxLibNode(NxLibItem const& node, std::string const& frame)
 {
-  auto leftImage = imageFromNxLibNode(node[itmLeft], frame);
-  auto rightImage = imageFromNxLibNode(node[itmRight], frame);
+  ImagePtr leftImage;
+  ImagePtr rightImage;
+
+  if (node[itmLeft].exists() && node[itmRight].exists())
+  {
+    leftImage = imageFromNxLibNode(node[itmLeft], frame);
+    rightImage = imageFromNxLibNode(node[itmRight], frame);
+  }
+  else
+  {
+    // Create a dummy pair with an empty right image in case of an S-Series camera.
+    leftImage = imageFromNxLibNode(node, frame);
+    rightImage = nullptr;
+  }
 
   return { leftImage, rightImage };
 }

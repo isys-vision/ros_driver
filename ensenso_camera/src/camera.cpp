@@ -296,8 +296,16 @@ void Camera::fillBasicCameraInfoFromNxLib(sensor_msgs::CameraInfoPtr const& info
   info->width = cameraNode[itmSensor][itmSize][0].asInt();
   info->height = cameraNode[itmSensor][itmSize][1].asInt();
 
-  info->binning_x = cameraNode[itmParameters][itmCapture][itmBinning].asInt();
-  info->binning_y = info->binning_x;
+  if (cameraNode[itmParameters][itmCapture][itmBinning].exists())
+  {
+    info->binning_x = cameraNode[itmParameters][itmCapture][itmBinning].asInt();
+    info->binning_y = info->binning_x;
+  }
+  else
+  {
+    info->binning_x = 0;
+    info->binning_y = 0;
+  }
 }
 
 void Camera::updateTransformations(tf2::Transform const& targetFrameTransformation) const
@@ -510,6 +518,11 @@ bool Camera::open()
     ROS_ERROR("The camera '%s' is already in use", params.serial.c_str());
     return false;
   }
+
+  // At this point the camera does for sure exist (since in case it is a file camera it has been created above) and the
+  // camera type is available in the NxLib. Update the camera type in order to also support S-Series cameras, which are
+  // a subtype of stereo and do not have their own ROS node, but are handled by the stereo node.
+  updateCameraTypeSpecifics();
 
   try
   {

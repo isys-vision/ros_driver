@@ -11,7 +11,10 @@ MonoCamera::MonoCamera(ros::NodeHandle nh, CameraParameters params) : Camera(nh,
 
   requestDataServer = MAKE_SERVER(RequestData, request_data);
   locatePatternServer = MAKE_SERVER(LocatePattern, locate_pattern);
+}
 
+void MonoCamera::advertiseTopics()
+{
   image_transport::ImageTransport imageTransport(nh);
   rawImagePublisher = imageTransport.advertiseCamera("raw/image", 1);
   rectifiedImagePublisher = imageTransport.advertiseCamera("rectified/image", 1);
@@ -19,6 +22,7 @@ MonoCamera::MonoCamera(ros::NodeHandle nh, CameraParameters params) : Camera(nh,
 
 void MonoCamera::init()
 {
+  advertiseTopics();
   startServers();
   initTfPublishTimer();
 }

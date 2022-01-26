@@ -298,6 +298,13 @@ public:
   bool open();
 
   /**
+   * Update camera type specifics (used for the S-Series, which is a subtype of stereo).
+   */
+  virtual void updateCameraTypeSpecifics()
+  {
+  }
+
+  /**
    * Initialize the camera.
    */
   virtual void init() = 0;
