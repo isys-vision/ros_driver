@@ -64,6 +64,7 @@ std::string const TARGET_FRAME_LINK = "Workspace";
 // from the ROS node itself.
 int const ERROR_CODE_UNKNOWN_EXCEPTION = 100;
 int const ERROR_CODE_TF = 101;
+int const ERROR_XR_CAPTURE_RAW = 102;
 
 #define LOG_NXLIB_EXCEPTION(EXCEPTION)                                                                                 \
   try                                                                                                                  \
