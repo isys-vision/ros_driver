@@ -113,7 +113,7 @@
     <link name="${name}_left_lens_frame"/>
   </xacro:macro>
 
-  <xacro:macro name="ensenso_X200_xFA_Series" params="name margin:=0.03 radius_lens_sensor:=0.02 length_lens_sensor:=0.05">
+  <xacro:macro name="ensenso_X200_xFA_Series" params="name margin:=0.03">
     <link name="${name}">
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
